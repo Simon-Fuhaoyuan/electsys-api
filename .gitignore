@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Captcha image files
+__captcha.png
+
 # macOS cache files
 *.DS_Store
 .AppleDouble

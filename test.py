@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # encoding: utf-8
 '''
 @author: yuxiqian
@@ -10,16 +11,21 @@
 
 import login
 
+
+log = login.Login()
+
 username = input("jAccount ID: >>> ")
 password = input("jAccount Password: >>> ")
 
-login.get_captcha(display=True, on_screen=True)
+log.get_captcha(display=True, on_screen=True)
 captcha = input("Input Captcha: >>> ")
 
 
-log = login.Login()
-print(log.attempt(username, password, captcha))
+print("Login Response: ")
+print(log.attempt(username, password, captcha).url)
 
 # 等会儿，喘口气
 input()
+
+print("Logout Response: ")
 print(log.logout())
