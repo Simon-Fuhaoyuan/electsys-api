@@ -9,8 +9,7 @@
 @time: 2019/1/4
 '''
 
-from lxml import etree
-import requests
+import json
 
 score_check_url = 'http://i.sjtu.edu.cn/cjcx/cjcx_cxDgXscj.html?doType=query&gnmkdm=N305005'
 

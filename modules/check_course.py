@@ -9,9 +9,8 @@
 @time: 2019/1/4
 '''
 
-from lxml import etree
-import requests
 import json
+
 
 course_table_url = 'http://i.sjtu.edu.cn/kbcx/xskbcx_cxXsKb.html?gnmkdm=N2151'
 
