@@ -1,9 +1,17 @@
 # electsys-api
 上海交通大学新版教学信息服务网 API。
 
+
 ![](https://img.shields.io/badge/python-3.x-blue.svg)
 [![](https://img.shields.io/github/last-commit/google/skia.svg)](https://github.com/yuxiqian/electsys-api/)
 [![](https://img.shields.io/github/commits-since/:user/:repo/:version.svg)](https://github.com/yuxiqian/electsys-api)
+
+
+<div align=center>
+    <img src="https://raw.githubusercontent.com/yuxiqian/electsys-api/master/screenshots/login_captcha.png"/>
+</div>
+
+> jAccount 登录接口
 
 # 文档
 * [Wiki Home](https://github.com/yuxiqian/electsys-api/wiki)
