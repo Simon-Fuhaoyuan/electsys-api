@@ -15,7 +15,7 @@ import json
 exam_check_url = 'http://i.sjtu.edu.cn/kwgl/kscx_cxXsksxxIndex.html?doType=query&gnmkdm=N358105&su='
 
 
-def get_exam_json(s, year, term, course_name="", exam_location="", course_date=""):
+def get_exam_json(s, year, term, course_name="", exam_location="", course_date="", max_limit=15):
     if term == 1:
         term_code = '3'
     elif term == 2:
@@ -33,7 +33,7 @@ def get_exam_json(s, year, term, course_name="", exam_location="", course_date="
         'ksrq': course_date,
         '_search': 'false',
         'nd': s.get_session_id(),
-        'queryModel.showCount': '15',
+        'queryModel.showCount': str(max_limit),
         'queryModel.currentPage': '1',
         'queryModel.sortName': '',
         'queryModel.sortOrder': 'asc',
