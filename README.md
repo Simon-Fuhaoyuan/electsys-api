@@ -3,6 +3,7 @@
 
 ![](https://img.shields.io/badge/python-3.x-blue.svg)
 [![](https://img.shields.io/github/last-commit/google/skia.svg)](https://github.com/yuxiqian/electsys-api/)
+[![](https://img.shields.io/github/commits-since/:user/:repo/:version.svg)](https://github.com/yuxiqian/electsys-api)
 
 # 文档
 * [Wiki Home](https://github.com/yuxiqian/electsys-api/wiki)
