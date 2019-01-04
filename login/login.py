@@ -70,7 +70,7 @@ class Login:
         student_id = html.xpath('//*[@id="sessionUserKey"]/@value')
 
         # fin_resp = self.__req.get(resp.url)
-        return Session(resp.url, str(student_id), self.__req), resp
+        return Session(resp.url, str(student_id), self.__req)
 
     def logout(self):
         return self.__req.get(logout_url)

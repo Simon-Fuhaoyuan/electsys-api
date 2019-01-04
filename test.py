@@ -22,14 +22,19 @@ captcha = input("Input Captcha: >>> ")
 
 
 print("Login Response: ")
-s, r = log.attempt(username, password, captcha)
-print(r)
-# s 就是我们的内容 Session 了
+s = log.attempt(username, password, captcha)
+
+if s == None:
+    print("服务器提了一个问题")
+    exit(1)
+
+# s 要不是 None，就是我们的内容 Session 了
 
 # 等会儿，喘口气
-input()
+# input()
 
-modules.get_calendar(s)
+print("本学期的第一天：")
+print(modules.get_start_day(s))
 
 # 尝试登出
 print("Logout Response: ")
