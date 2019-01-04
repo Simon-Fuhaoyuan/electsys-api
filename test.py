@@ -43,12 +43,12 @@ print(modules.get_course_json(s, 2018, 1))
 print("2017 年春季学期的课表：")
 print(modules.get_course_json(s, 2017, 2))
 
-print("2017 年秋季学期的考试成绩：")
-print(modules.get_score_json(s, 2017, 1))
+print("2017 年春季学期的考试成绩：")
+print(modules.get_score_json(s, 2017, 2))
 input()
 
-print("2018 年秋季学期的考试安排：")
-print(modules.get_exam_json(s, 2018, 1))
+print("2017 年春季学期的考试安排：")
+print(modules.get_exam_json(s, 2017, 2))
 input()
 
 # 尝试登出

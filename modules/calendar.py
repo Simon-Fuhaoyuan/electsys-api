@@ -36,4 +36,7 @@ def get_start_day(s):
 
     for day in cal_htm.xpath('//*[@id="sch-xq"]/table/tbody/tr[1]/td[2]'):
         day = int(day.text)
-    return month, day
+
+    if month != None and day != None:
+        return month, day
+    return None, None
