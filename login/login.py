@@ -5,7 +5,7 @@
 @license: MIT
 @contact: akaza_akari@sjtu.edu.cn
 @software: electsys-api
-@file: login.py
+@file: /login/login.py
 @time: 2019/1/4
 '''
 
@@ -17,24 +17,9 @@ import argparse
 import requests
 
 from PIL import Image
-
-headers = {
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-    'Origin': 'https://jaccount.sjtu.edu.cn',
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15',
-    'Accept-Language': 'zh-cn,zh;q=0.9',
-    'Accept-Encoding': 'gzip, deflate',
-    'Connection': 'keep-alive'
-}
-
-
-login_url = 'http://i.sjtu.edu.cn/jaccountlogin'
-logout_url = 'http://i.sjtu.edu.cn/xtgl/login_slogin.html'
-captcha_url = 'https://jaccount.sjtu.edu.cn/jaccount/captcha'
-post_url = 'https://jaccount.sjtu.edu.cn/jaccount/ulogin'
-content_url = 'http://i.sjtu.edu.cn'
-
-captcha_cache = '__captcha.png'
+from lxml import etree
+from .misc.const import headers, login_url, logout_url, captcha_url, post_url, captcha_cache
+from shared.session import *
 
 
 class Login:
@@ -55,6 +40,9 @@ class Login:
 
         _, self.__sid, self.__client, self.__returl, self.__se = re.split(
             r"sid=|&client=|&returl=|&se=", unquoted_jump_url)
+
+    def __del__(self):
+        self.logout()
 
     def attempt(self, username, password, captcha):
 
@@ -77,9 +65,12 @@ class Login:
             # Error Sign
             return None
 
-        # fin_resp = self.__req.get(resp.url)
+        html = etree.HTML(resp.content.decode())
 
-        return resp.url
+        student_id = html.xpath('//*[@id="sessionUserKey"]/@value')
+
+        # fin_resp = self.__req.get(resp.url)
+        return Session(resp.url, str(student_id), self.__req), resp
 
     def logout(self):
         return self.__req.get(logout_url)
