@@ -28,8 +28,6 @@ headers = {
 }
 
 
-target_referer = ""
-
 login_url = 'http://i.sjtu.edu.cn/jaccountlogin'
 logout_url = 'http://i.sjtu.edu.cn/xtgl/login_slogin.html'
 captcha_url = 'https://jaccount.sjtu.edu.cn/jaccount/captcha'
@@ -58,9 +56,6 @@ class Login:
         _, self.__sid, self.__client, self.__returl, self.__se = re.split(
             r"sid=|&client=|&returl=|&se=", unquoted_jump_url)
 
-        # new_headers['Referer'] = jump_url
-        # target_referer = jump_url
-
     def attempt(self, username, password, captcha):
 
         post_params = {
@@ -82,9 +77,9 @@ class Login:
             # Error Sign
             return None
 
-        fin_resp = self.__req.get(resp.url)
+        # fin_resp = self.__req.get(resp.url)
 
-        return fin_resp
+        return resp.url
 
     def logout(self):
         return self.__req.get(logout_url)
@@ -111,7 +106,7 @@ def draw_captcha(img):
     resize_limit = get_proper_image_width()
     img = img.resize(resize_limit)
 
-    # 礼貌性给一个 padding
+    # 礼貌性给一个 padding，打一个空行
     print()
     for i in range(resize_limit[1]):
         line_str = ""
@@ -126,5 +121,5 @@ def draw_captcha(img):
         if len(line_str.replace(' ', '')) != 0:
             # 空行不给打
             print(line_str)
-    # 礼貌性给一个 padding
+    # 礼貌性给一个 padding，打一个空行
     print()

@@ -22,7 +22,7 @@ captcha = input("Input Captcha: >>> ")
 
 
 print("Login Response: ")
-print(log.attempt(username, password, captcha).url)
+print(log.attempt(username, password, captcha))
 
 # 等会儿，喘口气
 input()
