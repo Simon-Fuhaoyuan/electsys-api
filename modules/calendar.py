@@ -18,7 +18,7 @@ calendar_url = 'http://i.sjtu.edu.cn/xtgl/index_cxshjdAreaFive.html?localeKey=zh
 def get_calendar_table(s):
     if s.is_ok():
         url = calendar_url + s.student_id
-        cont = (s.GET(url).content.decode())
+        cont = (s.get(url).content.decode())
         return cont
 
     return None

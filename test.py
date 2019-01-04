@@ -33,9 +33,12 @@ if s == None:
 # 等会儿，喘口气
 # input()
 
-print("本学期的第一天：")
+print("本学期的第一天：(月, 日)")
 print(modules.get_start_day(s))
 
+print("2018 年秋季学期的课表：")
+print(modules.get_course_json(s, 2018, 1))
+input()
 # 尝试登出
 print("Logout Response: ")
 print(log.logout())

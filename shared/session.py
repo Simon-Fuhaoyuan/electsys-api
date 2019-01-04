@@ -28,8 +28,11 @@ class Session:
         self.student_id = suid
         self.__session = session
 
-    def GET(self, url, params=None):
+    def get(self, url, params=None):
         return self.__session.get(url, params=params)
+
+    def post(self, url, params=None):
+        return self.__session.post(url, params=params)
 
     def is_ok(self):
         return self.url != "" and self.student_id != "" and self.__session != None
