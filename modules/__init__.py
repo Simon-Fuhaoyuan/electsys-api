@@ -13,5 +13,7 @@
 
 from .calendar import *
 from .check_course import *
+from .check_score import *
 
-__all__ = ['get_calendar_table', 'get_start_day', 'get_course_json']
+__all__ = ['get_calendar_table', 'get_start_day',
+           'get_course_json', 'get_score']

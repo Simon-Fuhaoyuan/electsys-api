@@ -36,3 +36,6 @@ class Session:
 
     def is_ok(self):
         return self.url != "" and self.student_id != "" and self.__session != None
+
+    def get_session_id(self):
+        return self.url.split('_t=')[1]
