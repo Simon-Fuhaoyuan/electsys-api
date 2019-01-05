@@ -15,7 +15,7 @@ import json
 exam_check_url = 'http://i.sjtu.edu.cn/kwgl/kscx_cxXsksxxIndex.html?doType=query&gnmkdm=N358105&su='
 
 
-def get_exam_json(s, year, term, course_name="", exam_location="", course_date="", max_limit=15):
+def get_exam_dict(s, year, term, course_name="", exam_location="", course_date="", max_limit=15):
     if term == 1:
         term_code = '3'
     elif term == 2:
@@ -42,5 +42,5 @@ def get_exam_json(s, year, term, course_name="", exam_location="", course_date="
 
     resp = s.post(exam_check_url, params)
     if resp.status_code == 200:
-        return resp.content.decode()
+        return json.loads(resp.content.decode())
     return None

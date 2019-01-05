@@ -14,7 +14,7 @@ import json
 score_check_url = 'http://i.sjtu.edu.cn/cjcx/cjcx_cxDgXscj.html?doType=query&gnmkdm=N305005'
 
 
-def get_score_json(s, year, term, max_limit=30):
+def get_score_dict(s, year, term, max_limit=30):
     if term == 1:
         term_code = '3'
     elif term == 2:
@@ -37,5 +37,5 @@ def get_score_json(s, year, term, max_limit=30):
 
     resp = s.post(score_check_url, params)
     if resp.status_code == 200:
-        return resp.content.decode()
+        return json.loads(resp.content.decode())
     return None

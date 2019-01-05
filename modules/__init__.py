@@ -17,4 +17,4 @@ from .check_score import *
 from .check_exam import *
 
 __all__ = ['get_calendar_table', 'get_start_day',
-           'get_course_json', 'get_score_json', 'get_exam_json']
+           'get_course_dict', 'get_score_dict', 'get_exam_dict']
