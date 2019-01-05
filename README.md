@@ -4,8 +4,6 @@
 
 ![](https://img.shields.io/badge/python-3.x-blue.svg)
 [![](https://img.shields.io/github/last-commit/google/skia.svg)](https://github.com/yuxiqian/electsys-api/)
-[![](https://img.shields.io/github/commits-since/:user/:repo/:version.svg)](https://github.com/yuxiqian/electsys-api)
-
 
 <div align=center>
     <img src="https://raw.githubusercontent.com/yuxiqian/electsys-api/master/screenshots/login_captcha.png"/>
@@ -16,13 +14,14 @@
 # 文档
 * [Wiki Home](https://github.com/yuxiqian/electsys-api/wiki)
 
-* [API 结构](https://github.com/yuxiqian/electsys-api/wiki/架构)
+[![](https://img.shields.io/badge/模块-登录-brightgreen.svg)](https://github.com/yuxiqian/electsys-api/wiki/login-模块)
+[![](https://img.shields.io/badge/模块-会话-red.svg)](https://github.com/yuxiqian/electsys-api/wiki/session-模块)
+[![](https://img.shields.io/badge/模块-功能-lightgrey.svg)](https://github.com/yuxiqian/electsys-api/wiki/功能模块)
 
-* [登录模块](https://github.com/yuxiqian/electsys-api/wiki/login-模块)
+[![](https://img.shields.io/badge/结构-课程表-blue.svg)](https://github.com/yuxiqian/electsys-api/wiki/课程表数据结构)
+[![](https://img.shields.io/badge/结构-考试安排-ff69b4.svg)](https://github.com/yuxiqian/electsys-api/wiki/考试安排数据结构)
+[![](https://img.shields.io/badge/结构-考试成绩-orange.svg)](https://github.com/yuxiqian/electsys-api/wiki/考试成绩数据结构)
 
-* [会话模块](https://github.com/yuxiqian/electsys-api/wiki/session-模块)
-
-* [功能性模块](https://github.com/yuxiqian/electsys-api/wiki/功能模块)
 
 # 致谢
 
