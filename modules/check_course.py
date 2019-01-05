@@ -17,9 +17,15 @@ course_table_url = 'http://i.sjtu.edu.cn/kbcx/xskbcx_cxXsKb.html?gnmkdm=N2151'
 
 def get_course_dict(s, year, term):
     if s.is_ok():
+        if term == 1:
+            xqm = '3'
+        elif term == 2:
+            xqm = '12'
+        elif term == 3:
+            xqm = '16'
         params = {
             'xnm': str(year),
-            'xqm': str(term)
+            'xqm': xqm
         }
         resp = s.post(course_table_url, params)
         if resp.status_code == 200:
