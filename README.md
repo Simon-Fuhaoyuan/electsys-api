@@ -31,4 +31,6 @@
 
 * [PIL](https://github.com/python-pillow/Pillow), under the open source PIL Software License
 
+* [Shields](https://github.com/badges/shields/), under the CC0 1.0 Universal License
+
 * [SJTU NIC](https://net.sjtu.edu.cn)
