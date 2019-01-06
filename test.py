@@ -38,7 +38,7 @@ if s == None:
 
 # school_pack = shared.holder_school_packer('03000')
 
-manip.query_course(s, "计算机")
+manip.query_course(s, '', request_left=True)
 
 input()
 

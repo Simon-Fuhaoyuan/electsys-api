@@ -34,11 +34,9 @@ def query_course(s, *keywords, **args):
 
     if s.is_ok():
         raw_html = (s.get(query_url + s.student_id).content.decode())
-
     else:
         return None
 
-    input(raw_html)
     ele_htm = etree.HTML(raw_html)
 
     params = {
@@ -49,6 +47,7 @@ def query_course(s, *keywords, **args):
         'sfkkzy': '0',
         'sfznkx': '0',
         'zdkxms': '0',
+        'kkbkdj': '0',
         'sfkxq': '1',
         'sfkcfx': '0',
         'kkbk': '0',
@@ -81,6 +80,8 @@ def query_course(s, *keywords, **args):
 
     count = 0
     for kw in keywords:
+        if len(kw) == 0:
+            continue
         params["filter_list[%d]" % count] = str(kw)
         count += 1
 
@@ -91,6 +92,6 @@ def query_course(s, *keywords, **args):
             count += 1
 
     print(params)
-    print(post_url + s.student_id)
-    s.print_headers()
-    print(s.post(post_url + s.student_id, params).content.decode())
+    # print(post_url + s.student_id)
+    # s.print_headers()
+    print(s.post(post_url + s.student_id, params).headers)
