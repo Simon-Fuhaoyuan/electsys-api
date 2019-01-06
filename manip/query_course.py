@@ -70,9 +70,7 @@ def query_course(s, *keywords, **args):
 
         value = ele_htm.xpath('//*[@id="%s"]/@value' % fix_par)[0]
         params[par] = value
-        print("Parsed param %s as %s" % (par, value))
-
-    xkkz_id = ele_htm.xpath('//*[@id="firstXkkzId"]/@value')[0]
+        # print("Parsed param %s as %s" % (par, value))
 
     if 'request_left' in args:
         if args['request_left']:
