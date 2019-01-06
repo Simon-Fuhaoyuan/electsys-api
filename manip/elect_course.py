@@ -9,7 +9,6 @@
 @time: 2019/1/6
 '''
 
-from lxml import etree
 import requests
 
-calendar_url = 'http://i.sjtu.edu.cn/xsxk/zzxkyzb_cxZzxkYzbIndex.html?gnmkdm=N253512&layout=default&su='
+elect_url = 'http://i.sjtu.edu.cn/xsxk/zzxkyzb_cxZzxkYzbIndex.html?gnmkdm=N253512&layout=default&su='

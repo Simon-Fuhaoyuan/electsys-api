@@ -1,17 +1,15 @@
 #!/usr/bin/env python
 # encoding: utf-8
-# package
-
 '''
 @author: yuxiqian
 @license: MIT
 @contact: akaza_akari@sjtu.edu.cn
 @software: electsys-api
-@file: /manip/__init__.py
+@file: /manip/query_course.py
 @time: 2019/1/6
 '''
 
-from query_course import *
-from elect_course import *
+import json
+import requests
 
-__all__ = ['']
+query_url = 'http://i.sjtu.edu.cn/xsxk/zzxkyzb_cxZzxkYzbPartDisplay.html?gnmkdm=N253512&su='

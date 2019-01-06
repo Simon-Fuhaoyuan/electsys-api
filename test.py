@@ -11,6 +11,11 @@
 
 import login
 import modules
+import shared
+
+print(shared.holder_school_packer('03700', '41000', '人文学院'))
+
+input()
 
 log = login.Login()
 
