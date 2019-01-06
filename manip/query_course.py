@@ -51,7 +51,7 @@ def query_course(s, *keywords, **args):
         'sfkxq': '1',
         'sfkcfx': '0',
         'kkbk': '0',
-        'kklxdm': '0',
+        'kklxdm': '01',
         'sfkgbcx': '1',
         'sfrxtgkcxd': '0',
         'tykczgxdcs': '0',
@@ -91,7 +91,6 @@ def query_course(s, *keywords, **args):
             params["kkbm_id_list[%d]" % count] = school
             count += 1
 
-    print(params)
     # print(post_url + s.student_id)
     # s.print_headers()
-    print(s.post(post_url + s.student_id, params).headers)
+    return json.loads(s.post(post_url + s.student_id, params).content.decode())
