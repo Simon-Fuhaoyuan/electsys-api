@@ -10,12 +10,10 @@
 '''
 
 import login
+import manip
 import modules
 import shared
 
-print(shared.holder_school_packer('03700', '41000', '人文学院'))
-
-input()
 
 log = login.Login()
 
@@ -37,6 +35,12 @@ if s == None:
 
 # 等会儿，喘口气
 # input()
+
+# school_pack = shared.holder_school_packer('03000')
+
+manip.query_course(s, "计算机")
+
+input()
 
 print("本学期的第一天：(月, 日)")
 print(modules.get_start_day(s))

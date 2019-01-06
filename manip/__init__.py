@@ -11,7 +11,7 @@
 @time: 2019/1/6
 '''
 
-from query_course import *
-from elect_course import *
+from .query_course import *
+from .elect_course import *
 
-__all__ = ['']
+__all__ = ['query_course']

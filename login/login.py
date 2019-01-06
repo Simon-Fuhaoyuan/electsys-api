@@ -67,7 +67,7 @@ class Login:
 
         html = etree.HTML(resp.content.decode())
 
-        student_id = html.xpath('//*[@id="sessionUserKey"]/@value')
+        student_id = html.xpath('//*[@id="sessionUserKey"]/@value')[0]
 
         # fin_resp = self.__req.get(resp.url)
         return Session(resp.url, str(student_id), self.__req)
