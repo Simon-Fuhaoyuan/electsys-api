@@ -44,7 +44,7 @@ input()
 print(manip.query_course_detail(s, 'SE111'))
 
 print("本学期的第一天：(月, 日)")
-print(modules.get_start_day(s))
+print(modules.get_start_date(s))
 
 
 print("2018 年秋季学期的课表：")

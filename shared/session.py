@@ -20,6 +20,8 @@ class Session:
     # 学号，需要此信息才能访问各子页面
     student_id = ""
 
+    __is_ok = True
+
     # requests.session 实例
     __session = None
 
@@ -29,13 +31,25 @@ class Session:
         self.__session = session
 
     def get(self, url, params=None, allow_redirects=True):
-        return self.__session.get(url, params=params, allow_redirects=allow_redirects)
+        resp = self.__session.get(
+            url, params=params, allow_redirects=allow_redirects)
+        if resp.status_code == 200:
+            self.__is_ok = True
+        else:
+            self.__is_ok = False
+        return resp
 
     def post(self, url, params=None, allow_redirects=True):
-        return self.__session.post(url, params=params, allow_redirects=allow_redirects)
+        resp = self.__session.post(
+            url, params=params, allow_redirects=allow_redirects)
+        if resp.status_code == 200:
+            self.__is_ok = True
+        else:
+            self.__is_ok = False
+        return resp
 
     def is_ok(self):
-        return self.url != "" and self.student_id != "" and self.__session != None
+        return self.__is_ok
 
     def get_session_id(self):
         return self.url.split('_t=')[1]

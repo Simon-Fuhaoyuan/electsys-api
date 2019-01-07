@@ -24,6 +24,31 @@ def get_calendar_table(s):
     return None
 
 
+def get_start_date(s):
+
+    cont = get_calendar_table(s)
+
+    cal_htm = etree.HTML(cont)
+
+    for mon in cal_htm.xpath('//*[@id="sch-xq"]/table/thead/tr[2]/th[2]'):
+        month = int(mon.text.replace('月', ''))
+
+    for day in cal_htm.xpath('//*[@id="sch-xq"]/table/tbody/tr[1]/td[2]'):
+        day = int(day.text)
+
+    for title in cal_htm.xpath('//*[@id="sch-xq"]/table/thead/tr[1]/th'):
+        year_term = title.text.replace('上海交通大学', '').replace('校历', '')
+
+    if '秋冬' in year_term:
+        year = int(year_term.split('-')[0])
+    else:
+        year = int(year_term.split('-')[0]) + 1
+
+    if month != None and day != None:
+        return "%s-%02d-%02d" % (year, month, day)
+    return None
+
+
 def get_start_day(s):
 
     cont = get_calendar_table(s)
