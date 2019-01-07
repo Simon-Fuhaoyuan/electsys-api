@@ -18,6 +18,8 @@ query_url = 'http://i.sjtu.edu.cn/xsxk/zzxkyzb_cxZzxkYzbIndex.html?gnmkdm=N25351
 
 post_url = 'http://i.sjtu.edu.cn/xsxk/zzxkyzb_cxZzxkYzbPartDisplay.html?gnmkdm=N253512&su='
 
+detail_url = 'http://i.sjtu.edu.cn/xsxk/zzxkyzb_cxJxbWithKchZzxkYzb.html?gnmkdm=N253512&su='
+
 hidden_params = ['xh_id', 'xqh_id', 'jg_id', 'zyh_id', 'zyfx_id', 'njdm_id',
                  'bh_id', 'xbm', 'xslbdm', 'ccdm', 'xsbj', 'xkxnm', 'xkxqm']
 
@@ -95,3 +97,52 @@ def query_course(s, *keywords, **args):
     # print(post_url + s.student_id)
     # s.print_headers()
     return json.loads(s.post(post_url + s.student_id, params).content.decode())
+
+
+def query_course_detail(s, course_code=""):
+    s.update_origin()
+
+    if s.is_ok():
+        raw_html = (s.get(query_url + s.student_id).content.decode())
+    else:
+        return None
+
+    ele_htm = etree.HTML(raw_html)
+
+    params = {
+        'kch_id': str(course_code),
+        'rwlx': '1',
+        'xkly': '0',
+        'bklx_id': '0',
+        'sfkknj': '0',
+        'sfkkzy': '0',
+        'sfznkx': '0',
+        'zdkxms': '0',
+        'kkbkdj': '0',
+        'sfkxq': '1',
+        'sfkcfx': '0',
+        'kkbk': '0',
+        'kklxdm': '01',
+        'sfkgbcx': '1',
+        'sfrxtgkcxd': '0',
+        'tykczgxdcs': '0',
+        'rlkz': '0',
+        'kspage': '1',
+        'jspage': '10'
+    }
+
+    for par in hidden_params:
+
+        # 有一项不一致的情况
+        if par == 'jg_id':
+            fix_par = 'jg_id_1'
+        else:
+            fix_par = par
+
+        value = ele_htm.xpath('//*[@id="%s"]/@value' % fix_par)[0]
+        params[par] = value
+        # print("Parsed param %s as %s" % (par, value))
+
+    # print(post_url + s.student_id)
+    # s.print_headers()
+    return json.loads(s.post(detail_url + s.student_id, params).content.decode())
