@@ -84,10 +84,13 @@ def query_course(s, *keywords, **args):
         count += 1
 
     if 'school' in args:
-        count = 0
-        for school in args['school']:
-            params["kkbm_id_list[%d]" % count] = school
-            count += 1
+        if isinstance(args['school'], list):
+            count = 0
+            for school in args['school']:
+                params["kkbm_id_list[%d]" % count] = school
+                count += 1
+        else:
+            params["kkbm_id_list[0]"] = str(args['school'])
 
     # print(post_url + s.student_id)
     # s.print_headers()
