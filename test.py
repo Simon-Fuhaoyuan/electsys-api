@@ -15,7 +15,10 @@ import modules
 import shared
 
 
-log = login.Login()
+try:
+    log = login.Login()
+except shared.RequestError:
+    exit(1)
 
 username = input("jAccount ID: >>> ")
 password = input("jAccount Password: >>> ")

@@ -14,4 +14,4 @@
 from .session import *
 from .school_id import *
 
-__all__ = ['Session', 'school_id_map', 'holder_school_packer']
+__all__ = ['Session', 'school_id_map', 'holder_school_packer', 'RequestError']

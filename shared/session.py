@@ -12,6 +12,10 @@
 import requests
 
 
+class RequestError(BaseException):
+    pass
+
+
 class Session:
 
     # Main Page URL
@@ -19,6 +23,9 @@ class Session:
 
     # 学号，需要此信息才能访问各子页面
     student_id = ""
+
+    # 上次请求的返回代码
+    __last_response_code = 0
 
     # requests.session 实例
     __session = None
@@ -29,10 +36,22 @@ class Session:
         self.__session = session
 
     def get(self, url, params=None, allow_redirects=True):
-        return self.__session.get(url, params=params, allow_redirects=allow_redirects)
+        try:
+            resp = self.__session.get(
+                url, params=params, allow_redirects=allow_redirects)
+            self.__last_response_code = resp.status_code
+            return resp
+        except:
+            raise RequestError
 
     def post(self, url, params=None, allow_redirects=True):
-        return self.__session.post(url, params=params, allow_redirects=allow_redirects)
+        try:
+            resp = self.__session.post(
+                url, params=params, allow_redirects=allow_redirects)
+            self.__last_response_code = resp.status_code
+            return resp
+        except:
+            raise RequestError
 
     def is_ok(self):
         return self.url != "" and self.student_id != "" and self.__session != None
@@ -43,5 +62,7 @@ class Session:
     def update_origin(self):
         self.__session.headers['Origin'] = 'http://i.sjtu.edu.cn'
 
-    def print_headers(self):
-        print(self.__session.headers)
+    def last_status(self):
+        if self.__last_response_code != 0:
+            return self.__last_response_code
+        return None

@@ -145,4 +145,4 @@ def query_course_detail(s, course_code=""):
 
     # print(post_url + s.student_id)
     # s.print_headers()
-    return json.loads(s.post(detail_url + s.student_id, params).content.decode())
+    return json.loads(s.post(detail_url + s.student_id, params).content.decode())['tmpList']

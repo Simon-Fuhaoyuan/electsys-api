@@ -19,7 +19,7 @@ import requests
 from PIL import Image
 from lxml import etree
 from .misc.const import headers, login_url, logout_url, captcha_url, post_url, captcha_cache
-from shared.session import *
+from shared import *
 
 
 class Login:
@@ -35,14 +35,20 @@ class Login:
         self.__req = requests.session()
         self.__req.headers.update(headers)
 
-        jump_url = self.__req.get(login_url).url
-        unquoted_jump_url = urllib.parse.unquote(str(jump_url))
+        try:
+            jump_url = self.__req.get(login_url).url
+            unquoted_jump_url = urllib.parse.unquote(str(jump_url))
 
-        _, self.__sid, self.__client, self.__returl, self.__se = re.split(
-            r"sid=|&client=|&returl=|&se=", unquoted_jump_url)
+            _, self.__sid, self.__client, self.__returl, self.__se = re.split(
+                r"sid=|&client=|&returl=|&se=", unquoted_jump_url)
+        except:
+            raise RequestError
 
     def __del__(self):
-        self.logout()
+        try:
+            self.logout()
+        except:
+            raise RequestError
 
     def attempt(self, username, password, captcha):
 
