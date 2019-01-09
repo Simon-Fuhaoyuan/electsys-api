@@ -12,3 +12,11 @@
 import requests
 
 elect_url = 'http://i.sjtu.edu.cn/xsxk/zzxkyzb_cxZzxkYzbIndex.html?gnmkdm=N253512&layout=default&su='
+
+
+def select_course(s, course_piece):
+    pass
+
+
+def deselect_course(s, course_piece):
+    pass
