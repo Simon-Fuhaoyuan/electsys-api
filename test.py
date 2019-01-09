@@ -44,7 +44,7 @@ if s == None:
 print(manip.query_course(s, '', school='03000', request_left=True))
 input()
 
-print(manip.query_course_detail(s, 'SE111'))
+# print(manip.query_course_detail(s, 'SE111'))
 
 print("本学期的第一天：(月, 日)")
 print(modules.get_start_day(s))

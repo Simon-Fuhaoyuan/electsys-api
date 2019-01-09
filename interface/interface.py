@@ -5,9 +5,11 @@
 @license: MIT
 @contact: akaza_akari@sjtu.edu.cn
 @software: electsys-api
-@file: /struct/elect_course.py
+@file: /interface/elect_course.py
 @time: 2019/1/9
 '''
+
+from shared.exception import ParseError
 
 
 class ElectCourse:

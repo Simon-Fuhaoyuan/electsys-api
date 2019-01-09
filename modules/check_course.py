@@ -10,7 +10,7 @@
 '''
 
 import json
-
+import shared.exception
 
 course_table_url = 'http://i.sjtu.edu.cn/kbcx/xskbcx_cxXsKb.html?gnmkdm=N2151'
 
@@ -30,4 +30,6 @@ def get_course_dict(s, year, term):
         resp = s.post(course_table_url, params)
         if resp.status_code == 200:
             return json.loads(resp.content.decode())
+
+        raise RequestError("Failed to request calendar schedule.")
         return None

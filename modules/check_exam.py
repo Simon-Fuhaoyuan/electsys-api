@@ -10,7 +10,7 @@
 '''
 
 import json
-
+import shared.exception
 
 exam_check_url = 'http://i.sjtu.edu.cn/kwgl/kscx_cxXsksxxIndex.html?doType=query&gnmkdm=N358105&su='
 
@@ -43,4 +43,6 @@ def get_exam_dict(s, year, term, course_name="", exam_location="", course_date="
     resp = s.post(exam_check_url, params)
     if resp.status_code == 200:
         return json.loads(resp.content.decode())
+
+    raise RequestError("Failed to request exam arrangement.")
     return None
