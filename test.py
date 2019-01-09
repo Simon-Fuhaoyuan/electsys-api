@@ -51,7 +51,7 @@ print(modules.get_start_day(s))
 
 
 print("2018 年秋季学期的课表：")
-print(modules.get_course_dict(s, 2018, 1)['kbList'])
+print(modules.get_course_dict(s, 2018, 1))
 
 input()
 

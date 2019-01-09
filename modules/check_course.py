@@ -10,7 +10,8 @@
 '''
 
 import json
-import shared.exception
+from interface import PersonalCourse
+from shared.exception import ParseError, RequestError
 
 course_table_url = 'http://i.sjtu.edu.cn/kbcx/xskbcx_cxXsKb.html?gnmkdm=N2151'
 
@@ -29,7 +30,17 @@ def get_course_dict(s, year, term):
         }
         resp = s.post(course_table_url, params)
         if resp.status_code == 200:
-            return json.loads(resp.content.decode())
+            resource = json.loads(resp.content.decode())
+        if 'kbList' in resource:
+            data_list = []
+            # 如果有数据
+            try:
+                for item in resource['kbList']:
+                    data_list.append(PersonalCourse(**item))
+            except ParseError:
+                # 抛异常结束
+                raise ParseError("Failed to parse course schedule dictionary.")
+            else:
+                return data_list
 
-        raise RequestError("Failed to request calendar schedule.")
-        return None
+        raise RequestError("Failed to request course schedule.")

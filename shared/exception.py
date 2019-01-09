@@ -16,3 +16,7 @@ class RequestError(BaseException):
 
 class ParseError(BaseException):
     pass
+
+
+class ParseWarning(Warning):
+    pass
