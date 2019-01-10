@@ -13,4 +13,5 @@
 
 from .interface import *
 
-__all__ = ['ElectCourse', 'PersonalCourse', 'PersonalExam', 'PersonalScore']
+__all__ = ['ElectCourse', 'PersonalCourse',
+           'PersonalExam', 'PersonalScore', 'CourseDetail']
