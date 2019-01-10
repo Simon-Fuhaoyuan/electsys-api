@@ -11,6 +11,18 @@
 
 > jAccount 登录接口
 
+# 功能
+
+ - [x] 查询校历
+ - [x] 查询课程表
+ - [x] 查询考试安排
+ - [x] 查询考试成绩
+ 
+ > 以下操作仅开放选课时段可用
+ - [x] 模糊／精确搜索课程库
+ - [x] 选课
+ - [x] 退课
+
 # 文档
 * [Wiki Home](https://github.com/yuxiqian/electsys-api/wiki)
 
