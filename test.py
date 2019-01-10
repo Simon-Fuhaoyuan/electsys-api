@@ -15,7 +15,10 @@ import modules
 import shared
 
 
-log = login.Login()
+try:
+    log = login.Login()
+except shared.RequestError:
+    exit(1)
 
 username = input("jAccount ID: >>> ")
 password = input("jAccount Password: >>> ")
@@ -38,17 +41,22 @@ if s == None:
 
 # school_pack = shared.holder_school_packer('03000')
 
-print(manip.query_course(s, '', school='03000', request_left=True))
+ele_cs = manip.query_course(s, '', school='03000', request_left=True)
+
+if len(ele_cs) != 0:
+    print(manip.query_course_detail(s, ele_cs[0]))
+    manip.select_course(s, ele_cs[0])
 input()
 
-print(manip.query_course_detail(s, 'SE111'))
+# 选完就退 刺激
+manip.deselect_course(s, ele_cs[0])
 
 print("本学期的第一天：(月, 日)")
 print(modules.get_start_date(s))
 
 
 print("2018 年秋季学期的课表：")
-print(modules.get_course_dict(s, 2018, 1)['kbList'])
+print(modules.get_course_dict(s, 2018, 1))
 
 input()
 

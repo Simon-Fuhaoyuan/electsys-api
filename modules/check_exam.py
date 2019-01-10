@@ -10,7 +10,8 @@
 '''
 
 import json
-
+from interface import PersonalExam
+from shared.exception import ParseError, RequestError
 
 exam_check_url = 'http://i.sjtu.edu.cn/kwgl/kscx_cxXsksxxIndex.html?doType=query&gnmkdm=N358105&su='
 
@@ -40,7 +41,18 @@ def get_exam_dict(s, year, term, course_name="", exam_location="", course_date="
         'time': '0'
     }
 
-    resp = s.post(exam_check_url, params)
+    resp = s.post(exam_check_url + s.student_id, params)
     if resp.status_code == 200:
-        return json.loads(resp.content.decode())
-    return None
+        resource = json.loads(resp.content.decode())
+        if 'items' in resource:
+            data_list = []
+            # 如果有数据
+            try:
+                for item in resource['items']:
+                    data_list.append(PersonalExam(**item))
+            except ParseError:
+                # 抛异常结束
+                raise ParseError("Failed to parse exam dictionary.")
+            else:
+                return data_list
+    raise RequestError("Failed to request exam arrangement.")

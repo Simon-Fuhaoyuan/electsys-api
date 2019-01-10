@@ -10,6 +10,8 @@
 '''
 
 import json
+from interface import PersonalScore
+from shared.exception import ParseError, RequestError
 
 score_check_url = 'http://i.sjtu.edu.cn/cjcx/cjcx_cxDgXscj.html?doType=query&gnmkdm=N305005'
 
@@ -37,5 +39,16 @@ def get_score_dict(s, year, term, max_limit=30):
 
     resp = s.post(score_check_url, params)
     if resp.status_code == 200:
-        return json.loads(resp.content.decode())
-    return None
+        resource = json.loads(resp.content.decode())
+        if 'items' in resource:
+            data_list = []
+            # 如果有数据
+            try:
+                for item in resource['items']:
+                    data_list.append(PersonalScore(**item))
+            except ParseError:
+                # 抛异常结束
+                raise ParseError("Failed to parse score dictionary.")
+            else:
+                return data_list
+    raise RequestError("Failed to request score data.")

@@ -14,4 +14,4 @@
 from .query_course import *
 from .elect_course import *
 
-__all__ = ['query_course']
+__all__ = ['query_course', 'query_course_detail', 'select_course']
