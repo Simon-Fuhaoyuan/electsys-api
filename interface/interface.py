@@ -9,7 +9,7 @@
 @time: 2019/1/9
 '''
 
-import warnings
+import logging
 from shared.exception import ParseError
 
 
@@ -17,12 +17,21 @@ class ElectCourse:
     def __init__(self, **entries):
         self.__dict__.update(entries)
         if not self.__check_valid():
-            raise ParseError(
-                "Missing key %s in elect information." % self.__missed_keys)
+            for critical in self.__critical_keys:
+                if critical in self.__missed_keys:
+                    # 如果丢失必须 key，就抛异常
+                    raise ParseError(
+                        "Missed critical key %s in course query." % critical)
+
+            # 否则只是打警告
+            logging.warn(
+                "Missing key %s in personal course query." % self.__missed_keys)
 
     __personal_keys = ['']
 
     __missed_keys = []
+
+    __critical_keys = []
 
     def __check_valid(self):
         self.__missed_keys = []
@@ -44,12 +53,15 @@ class PersonalCourse:
             for critical in self.__critical_keys:
                 if critical in self.__missed_keys:
                     # 如果丢失必须 key，就抛异常
-                    raise ParseError(
-                        "Missed necessary key %s in personal course schedule." % critical)
+                    if 'kcmc' in self.__dict__:
+                        raise ParseError("Missed critical key %s in <PersonalCourse> %s." % (
+                            critical, self.__dict__['kcmc']))
+                    raise ParseError("Missed critical key %s in <PersonalCourse> Anonymous." %
+                                     critical)
 
             # 否则只是打警告
-            warnings.warn(
-                "Missing key %s in personal course schedule." % self.__missed_keys, RuntimeWarning)
+            logging.warn(
+                "Missing optional key[s] %s in PersonalCourse: %s. Use carefully." % (self.__missed_keys, self.__dict__['kcmc']))
 
     __personal_keys = ['cdmc', 'cd_id', 'jc', 'jcor',
                        'jcs', 'jgh_id', 'jgpxzd', 'jxb_id', 'jxbmc', 'kch_id', 'kcmc', 'khfsmc', 'xm',
@@ -79,12 +91,15 @@ class PersonalExam:
             for critical in self.__critical_keys:
                 if critical in self.__missed_keys:
                     # 如果丢失必须 key，就抛异常
+                    if 'ksmc' in self.__dict__:
+                        raise ParseError(
+                            "Missed critical key %s in <PersonalExam> %s." % (critical, self.__dict__['ksmc']))
                     raise ParseError(
-                        "Missed necessary key %s in personal exam arrangements." % critical)
+                        "Missed critical key %s in <PersonalExam> Anonymous." % critical)
 
             # 否则只是打警告
-            warnings.warn(
-                "Missing key %s in personal exam arrangements." % self.__missed_keys, RuntimeWarning)
+            logging.warn(
+                "Missing optional key[s] %s in <PersonalExam> %s. Use carefully." % (critical, self.__dict__['ksmc']))
 
     __personal_keys = ['ksmc', 'kssj', 'cdxqmc', 'cdmc', 'xh',
                        'xm', 'xb', 'njmc', 'jgmc', 'zymc', 'bj',
@@ -114,12 +129,15 @@ class PersonalScore:
             for critical in self.__critical_keys:
                 if critical in self.__missed_keys:
                     # 如果丢失必须 key，就抛异常
+                    if 'kcmc' in self.__dict__:
+                        raise ParseError(
+                            "Missed critical key %s in <PersonalScore> %s." % (critical, self.__dict__['kcmc']))
                     raise ParseError(
-                        "Missed necessary key %s in personal score information." % critical)
+                        "Missed critical key %s in <PersonalScore> Anonymous." % critical)
 
             # 否则只是打警告
-            warnings.warn(
-                "Missing key %s in personal score information." % self.__missed_keys, RuntimeWarning)
+            logging.warn(
+                "Missing optional key %s in <PersonalScore> %s. Use carefully." % (self.__missed_keys, self.__dict__['kcmc']))
 
     __personal_keys = ['kcmc', 'kkbmmc', 'jsxm', 'bfzcj',
                        'jd', 'kch', 'jxbmc', 'xh', 'xm', 'xb', 'njmc', 'jgmc', 'zymc', 'bh_id', 'bj']

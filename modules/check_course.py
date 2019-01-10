@@ -10,6 +10,7 @@
 '''
 
 import json
+import logging
 from interface import PersonalCourse
 from shared.exception import ParseError, RequestError
 
@@ -34,13 +35,18 @@ def get_course_dict(s, year, term):
         if 'kbList' in resource:
             data_list = []
             # 如果有数据
-            try:
-                for item in resource['kbList']:
+            success = 0
+            fail = 0
+            for item in resource['kbList']:
+                try:
                     data_list.append(PersonalCourse(**item))
-            except ParseError:
-                # 抛异常结束
-                raise ParseError("Failed to parse course schedule dictionary.")
-            else:
-                return data_list
+                except ParseError:
+                    # 抛异常结束
+                    fail += 1
+                else:
+                    success += 1
+            logging.info(
+                "Course Parsing complete. %d success, %d fail." % (success, fail))
+            return data_list
 
         raise RequestError("Failed to request course schedule.")
