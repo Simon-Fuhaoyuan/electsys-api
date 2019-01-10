@@ -27,11 +27,12 @@ class ElectCourse:
             logging.warn(
                 "Missing key %s in personal course query." % self.__missed_keys)
 
-    __personal_keys = ['']
+    __personal_keys = ['jxb_id', 'jxbmc', 'kch', 'kch_id',
+                       'kcmc', 'xf']
 
     __missed_keys = []
 
-    __critical_keys = []
+    __critical_keys = ['jxb_id', 'kch_id', 'kcmc', 'xf']
 
     def __check_valid(self):
         self.__missed_keys = []
@@ -143,6 +144,42 @@ class PersonalScore:
                        'jd', 'kch', 'jxbmc', 'xh', 'xm', 'xb', 'njmc', 'jgmc', 'zymc', 'bh_id', 'bj']
 
     __missed_keys = []
+
+    __critical_keys = ['kcmc', 'bfzcj']
+
+    def __check_valid(self):
+        self.__missed_keys = []
+        flag = True
+        for key in self.__personal_keys:
+            if not key in self.__dict__:
+                self.__missed_keys.append(key)
+                flag = False
+        return flag
+
+    def print_raw(self):
+        print(self.__dict__)
+
+
+class CourseDetail:
+    def __init__(self, **entries):
+        self.__dict__.update(entries)
+        if not self.__check_valid():
+            for critical in self.__critical_keys:
+                if critical in self.__missed_keys:
+                    # 如果丢失必须 key，就抛异常
+                    if 'kcmc' in self.__dict__:
+                        raise ParseError(
+                            "Missed critical key %s in <CourseDetail> %s." % (critical, self.__dict__['kcmc']))
+                    raise ParseError(
+                        "Missed critical key %s in <CourseDetail> Anonymous." % critical)
+
+            # 否则只是打警告
+            logging.warn(
+                "Missing optional key %s in <CourseDetail> %s. Use carefully." % (self.__missed_keys, self.__dict__['kcmc']))
+
+    __personal_keys = ['jxb_id', 'jxbrl', 'jxdd', 'sksj', 'jsxx']
+
+    __missed_keys = ['jxb_id', 'jxbrl', 'jxdd']
 
     __critical_keys = ['kcmc', 'bfzcj']
 

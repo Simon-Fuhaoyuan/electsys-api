@@ -41,10 +41,11 @@ if s == None:
 
 # school_pack = shared.holder_school_packer('03000')
 
-print(manip.query_course(s, '', school='03000', request_left=True))
-input()
+ele_cs = manip.query_course(s, '', school='03000', request_left=True)
 
-# print(manip.query_course_detail(s, 'SE111'))
+if len(ele_cs) != 0:
+    print(manip.query_course_detail(s, ele_cs[0]))
+input()
 
 print("本学期的第一天：(月, 日)")
 print(modules.get_start_day(s))

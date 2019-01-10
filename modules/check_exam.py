@@ -41,7 +41,7 @@ def get_exam_dict(s, year, term, course_name="", exam_location="", course_date="
         'time': '0'
     }
 
-    resp = s.post(exam_check_url, params)
+    resp = s.post(exam_check_url + s.student_id, params)
     if resp.status_code == 200:
         resource = json.loads(resp.content.decode())
         if 'items' in resource:

@@ -12,6 +12,8 @@
 import json
 import requests
 from lxml import etree
+from interface.interface import ElectCourse, CourseDetail
+from shared.exception import RequestError, ParseError
 
 
 query_url = 'http://i.sjtu.edu.cn/xsxk/zzxkyzb_cxZzxkYzbIndex.html?gnmkdm=N253512&layout=default&su='
@@ -96,10 +98,28 @@ def query_course(s, *keywords, **args):
 
     # print(post_url + s.student_id)
     # s.print_headers()
-    return json.loads(s.post(post_url + s.student_id, params).content.decode())
+
+    resp = s.post(post_url + s.student_id, params)
+    if resp.status_code == 200:
+        resource = json.loads(resp.content.decode())
+        if 'tmpList' in resource:
+            data_list = []
+            # 如果有数据
+            try:
+                for item in resource['tmpList']:
+                    data_list.append(ElectCourse(**item))
+            except ParseError:
+                # 抛异常结束
+                raise ParseError("Failed to parse course data.")
+            else:
+                return data_list
+    raise RequestError("Failed to query course library.")
 
 
-def query_course_detail(s, course_code=""):
+def query_course_detail(s, elect_course_type):
+    if type(elect_course_type) != ElectCourse:
+        return None
+
     s.update_origin()
 
     if s.is_ok():
@@ -110,7 +130,7 @@ def query_course_detail(s, course_code=""):
     ele_htm = etree.HTML(raw_html)
 
     params = {
-        'kch_id': str(course_code),
+        'kch_id': str(elect_course_type.kch_id),
         'rwlx': '1',
         'xkly': '0',
         'bklx_id': '0',
@@ -145,4 +165,18 @@ def query_course_detail(s, course_code=""):
 
     # print(post_url + s.student_id)
     # s.print_headers()
-    return json.loads(s.post(detail_url + s.student_id, params).content.decode())['tmpList']
+
+    resp = s.post(detail_url + s.student_id, params)
+    if resp.status_code == 200:
+        resource = json.loads(resp.content.decode())
+        data_list = []
+        # 如果有数据
+        try:
+            for item in resource:
+                data_list.append(CourseDetail(**item))
+        except ParseError:
+            # 抛异常结束
+            raise ParseError("Failed to parse course data.")
+        else:
+            return data_list
+    raise RequestError("Failed to query course library.")
