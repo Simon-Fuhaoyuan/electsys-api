@@ -19,7 +19,7 @@ class RequestError(BaseException):
 class Session:
 
     # Main Page URL
-    url = ""
+    __url = "http://i.sjtu.edu.cn/"
 
     # 学号，需要此信息才能访问各子页面
     student_id = ""
@@ -52,6 +52,9 @@ class Session:
             return resp
         except:
             raise RequestError("Failed to perform POST request to %s." % url)
+
+    def is_ok(self):
+        return self.get(self.__url).status_code
 
     def get_session_id(self):
         return self.url.split('_t=')[1]
