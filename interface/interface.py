@@ -20,12 +20,17 @@ class ElectCourse:
             for critical in self.__critical_keys:
                 if critical in self.__missed_keys:
                     # 如果丢失必须 key，就抛异常
+                    if 'kcmc' in self.__dict__:
+                        raise ParseError(
+                            "Missed critical key %s in <ElectCourse>: %s." % (
+                                critical, self.__dict__['kcmc']))
                     raise ParseError(
-                        "Missed critical key %s in course query." % critical)
+                        "Missed critical key %s in <ElectCourse>: Anonymous." % critical)
 
             # 否则只是打警告
             logging.warn(
-                "Missing key %s in personal course query." % self.__missed_keys)
+                "Missing key %s in <ElectCourse>: %s. Use carefully." % (
+                    self.__missed_keys, self.__dict__['kcmc']))
 
     __personal_keys = ['jxb_id', 'jxbmc', 'kch', 'kch_id',
                        'kcmc', 'xf']
@@ -62,7 +67,7 @@ class PersonalCourse:
 
             # 否则只是打警告
             logging.warn(
-                "Missing optional key[s] %s in PersonalCourse: %s. Use carefully." % (self.__missed_keys, self.__dict__['kcmc']))
+                "Missing optional key[s] %s in <PersonalCourse> %s. Use carefully." % (self.__missed_keys, self.__dict__['kcmc']))
 
     __personal_keys = ['cdmc', 'cd_id', 'jc', 'jcor',
                        'jcs', 'jgh_id', 'jgpxzd', 'jxb_id', 'jxbmc', 'kch_id', 'kcmc', 'khfsmc', 'xm',
