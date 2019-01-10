@@ -48,6 +48,9 @@ if len(ele_cs) != 0:
     manip.select_course(s, ele_cs[0])
 input()
 
+# 选完就退 刺激
+manip.deselect_course(s, ele_cs[0])
+
 print("本学期的第一天：(月, 日)")
 print(modules.get_start_day(s))
 
