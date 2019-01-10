@@ -42,7 +42,7 @@ class Session:
             self.__last_response_code = resp.status_code
             return resp
         except:
-            raise RequestError
+            raise RequestError("Failed to perform GET request to %s." % url)
 
     def post(self, url, params=None, allow_redirects=True):
         try:
@@ -51,7 +51,7 @@ class Session:
             self.__last_response_code = resp.status_code
             return resp
         except:
-            raise RequestError
+            raise RequestError("Failed to perform POST request to %s." % url)
 
     def is_ok(self):
         return self.url != "" and self.student_id != "" and self.__session != None

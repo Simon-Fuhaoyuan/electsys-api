@@ -5,7 +5,7 @@
 @license: MIT
 @contact: akaza_akari@sjtu.edu.cn
 @software: electsys-api
-@file: /interface/elect_course.py
+@file: /interface/interface.py
 @time: 2019/1/9
 '''
 
