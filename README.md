@@ -18,10 +18,10 @@
 [![](https://img.shields.io/badge/模块-会话-red.svg)](https://github.com/yuxiqian/electsys-api/wiki/session-模块)
 [![](https://img.shields.io/badge/模块-功能-lightgrey.svg)](https://github.com/yuxiqian/electsys-api/wiki/功能模块)
 
-[![](https://img.shields.io/badge/结构-课程表-blue.svg)](https://github.com/yuxiqian/electsys-api/wiki/课程表数据结构)
-[![](https://img.shields.io/badge/结构-考试安排-ff69b4.svg)](https://github.com/yuxiqian/electsys-api/wiki/考试安排数据结构)
-[![](https://img.shields.io/badge/结构-考试成绩-orange.svg)](https://github.com/yuxiqian/electsys-api/wiki/考试成绩数据结构)
-
+[![](https://img.shields.io/badge/结构-课程表-blue.svg)](https://github.com/yuxiqian/electsys-api/wiki/PersonalCourse-结构)
+[![](https://img.shields.io/badge/结构-考试安排-ff69b4.svg)](https://github.com/yuxiqian/electsys-api/wiki/PersonalExam-结构)
+[![](https://img.shields.io/badge/结构-考试成绩-orange.svg)](https://github.com/yuxiqian/electsys-api/wiki/PersonalScore-结构)
+[![](https://img.shields.io/badge/结构-待选课程-5e3d50.svg)](https://github.com/yuxiqian/electsys-api/wiki/ElectCourse-结构)
 
 # 致谢
 
