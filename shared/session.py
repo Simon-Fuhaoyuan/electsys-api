@@ -53,9 +53,6 @@ class Session:
         except:
             raise RequestError("Failed to perform POST request to %s." % url)
 
-    def is_ok(self):
-        return self.__is_ok
-
     def get_session_id(self):
         return self.url.split('_t=')[1]
 
