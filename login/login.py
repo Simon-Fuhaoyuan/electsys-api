@@ -32,23 +32,21 @@ class Login:
     __se = ""
 
     def __init__(self):
-        self.__req = requests.session()
-        self.__req.headers.update(headers)
-
         try:
+            self.__req = requests.session()
+            self.__req.headers.update(headers)
+
             jump_url = self.__req.get(login_url).url
             unquoted_jump_url = urllib.parse.unquote(str(jump_url))
 
             _, self.__sid, self.__client, self.__returl, self.__se = re.split(
                 r"sid=|&client=|&returl=|&se=", unquoted_jump_url)
         except:
-            raise RequestError
+            raise RequestError(
+                "Failed to post login request to %s." % login_url)
 
     def __del__(self):
-        try:
-            self.logout()
-        except:
-            raise RequestError
+        self.logout()
 
     def attempt(self, username, password, captcha):
 
@@ -73,13 +71,21 @@ class Login:
 
         html = etree.HTML(resp.content.decode())
 
-        student_id = html.xpath('//*[@id="sessionUserKey"]/@value')[0]
+        try:
+            student_id = html.xpath('//*[@id="sessionUserKey"]/@value')[0]
+        except:
+            raise ParseError("Failed to parse element sessionUserKey.")
 
         # fin_resp = self.__req.get(resp.url)
         return Session(resp.url, str(student_id), self.__req)
 
     def logout(self):
-        return self.__req.get(logout_url)
+        try:
+            resp = self.__req.get(logout_url)
+            return resp.status_code
+        except requests.exceptions.ConnectionError:
+            raise RequestError(
+                "Failed to post logout request to %s." % logout_url)
 
     def get_captcha(self, display=False, on_screen=False):
         cap_img = self.__req.get(captcha_url).content

@@ -13,6 +13,7 @@
 
 from .query_course import *
 from .elect_course import *
+from .check_selected import *
 
 __all__ = ['query_course', 'query_course_detail',
-           'select_course', 'deselect_course']
+           'select_course', 'deselect_course', 'check_selected']
