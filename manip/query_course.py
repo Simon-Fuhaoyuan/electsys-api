@@ -44,6 +44,12 @@ def query_course(s, *keywords, **args):
 
     ele_htm = etree.HTML(raw_html)
 
+    is_kxk = ele_htm.xpath('//*[@id="iskxk"]/@value')
+
+    if len(is_kxk) == 0 or is_kxk[0] == '0':
+        raise RequestError(
+            "Failed to communicate with elect system. Check if the service is available.")
+
     params = {
         'rwlx': '1',
         'xkly': '0',
@@ -73,8 +79,11 @@ def query_course(s, *keywords, **args):
         else:
             fix_par = par
 
-        value = ele_htm.xpath('//*[@id="%s"]/@value' % fix_par)[0]
-        params[par] = value
+        value = ele_htm.xpath('//*[@id="%s"]/@value' % fix_par)
+        if len(value) != 0:
+            params[par] = value[0]
+        else:
+            raise ParseError("Failed to get control value %s." % fix_par)
         # print("Parsed param %s as %s" % (par, value))
 
     if 'request_left' in args:

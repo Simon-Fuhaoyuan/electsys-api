@@ -36,32 +36,37 @@ if s == None:
 # 等会儿，喘口气
 # input()
 
-print("已选的课程：")
-selected_course = manip.check_selected_course(s)
+try:
+    print("已选的课程：")
+    selected_course = manip.check_selected_course(s)
 
-print(selected_course)
+    print(selected_course)
 
-input()
+    input()
 
-print("搜索关键字 03000 结果：")
-school_pack = shared.holder_school_packer('03000')
+    print("搜索关键字 03000 结果：")
+    school_pack = shared.holder_school_packer('03000')
 
-ele_cs = manip.query_course(s, '', school='03000', request_left=True)
+    ele_cs = manip.query_course(s, '', school='03000', request_left=True)
 
-print(ele_cs)
-input()
+    print(ele_cs)
+    input()
 
-# 选完就退 刺激
-print("试图选上：")
-print(ele_cs[0])
-manip.select_course(s, ele_cs[0])
-input()
+    # 选完就退 刺激
+    print("试图选上：")
+    print(ele_cs[0])
+    manip.select_course(s, ele_cs[0])
+    input()
 
-# 选完就退 刺激
-print("试图退掉：")
-print(ele_cs[0])
-manip.deselect_course(s, ele_cs[0])
-input()
+    # 选完就退 刺激
+    print("试图退掉：")
+    print(ele_cs[0])
+    manip.deselect_course(s, ele_cs[0])
+    input()
+except shared.RequestError:
+    print("大概现在不是选课的时候...")
+except shared.ParseError:
+    print("解析请求数据出了毛病...")
 
 print("本学期的第一天：(月, 日)")
 print(modules.get_start_date(s))
