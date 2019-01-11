@@ -117,11 +117,14 @@ def query_course(s, *keywords, **args):
 
     for course in data_list:
         course_detail = query_course_detail(s, course)
-
-        try:
-            course.sksj = course_detail.sksj
-            course.jxdd = course_detail.jxdd
-        except:
+        if type(course_detail) == CourseDetail:
+            try:
+                course.sksj = course_detail.sksj
+                course.jxdd = course_detail.jxdd
+            except:
+                logging.warn(
+                    "Failed to obtain ['sksj', 'jxdd'] detail of <ElectCourse>: %s. Use carefully." % course['kcmc'])
+        else:
             logging.warn(
                 "Failed to obtain ['sksj', 'jxdd'] detail of <ElectCourse>: %s. Use carefully." % course['kcmc'])
 

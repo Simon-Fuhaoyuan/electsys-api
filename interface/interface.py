@@ -187,9 +187,9 @@ class CourseDetail:
 
     __personal_keys = ['jxb_id', 'jxbrl', 'jxdd', 'sksj', 'jsxx']
 
-    __missed_keys = ['jxb_id', 'jxbrl', 'jxdd']
+    __missed_keys = []
 
-    __critical_keys = ['kcmc', 'bfzcj']
+    __critical_keys = ['kcmc', 'bfzcj', 'sksj', 'jxdd']
 
     def __check_valid(self):
         self.__missed_keys = []
