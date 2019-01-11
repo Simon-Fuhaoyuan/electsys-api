@@ -37,6 +37,9 @@ class ElectCourse:
 
     __missed_keys = []
 
+    sksj = ""
+    jxdd = ""
+
     __critical_keys = ['jxb_id', 'kch_id', 'kcmc', 'xf']
 
     def __check_valid(self):

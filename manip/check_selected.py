@@ -24,7 +24,7 @@ hidden_params = ['xh_id', 'jg_id', 'zyh_id', 'zyfx_id', 'njdm_id',
                  'bh_id', 'xkxnm', 'xkxqm']
 
 
-def check_selected(s):
+def check_selected_course(s):
 
     # html_object
     # args:
