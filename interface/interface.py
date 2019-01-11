@@ -37,6 +37,12 @@ class ElectCourse:
 
     __missed_keys = []
 
+    def __str__(self):
+        return "<ElectCourse>: %s - %s, %s 学分" % (self.kch_id, self.kcmc, self.xf)
+
+    def __repr__(self):
+        return str(self)
+
     sksj = ""
     jxdd = ""
 
@@ -80,6 +86,12 @@ class PersonalCourse:
 
     __critical_keys = ['cdmc', 'kcmc', 'xqj', 'jc', 'zcd', 'kch_id', 'xm']
 
+    def __str__(self):
+        return "<PersonalCourse>: %s - %s, %s" % (self.kch_id, self.kcmc, self.xm)
+
+    def __repr__(self):
+        return str(self)
+
     def __check_valid(self):
         self.__missed_keys = []
         flag = True
@@ -118,6 +130,12 @@ class PersonalExam:
 
     __critical_keys = ['ksmc', 'kssj']
 
+    def __str__(self):
+        return "<PersonalExam>: %s @ %s" % (self.ksmc, self.kssj)
+
+    def __repr__(self):
+        return str(self)
+
     def __check_valid(self):
         self.__missed_keys = []
         flag = True
@@ -154,6 +172,12 @@ class PersonalScore:
     __missed_keys = []
 
     __critical_keys = ['kcmc', 'bfzcj']
+
+    def __str__(self):
+        return "<PersonalScore>: %s, %s‘" % (self.kcmc, self.bfzcj)
+
+    def __repr__(self):
+        return str(self)
 
     def __check_valid(self):
         self.__missed_keys = []
