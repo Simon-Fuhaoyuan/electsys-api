@@ -10,6 +10,7 @@
 '''
 
 import json
+import logging
 import requests
 from lxml import etree
 from interface.interface import ElectCourse, CourseDetail
@@ -111,9 +112,23 @@ def query_course(s, *keywords, **args):
             except ParseError:
                 # 抛异常结束
                 raise ParseError("Failed to parse course data.")
-            else:
-                return data_list
-    raise RequestError("Failed to query course library.")
+    else:
+        raise RequestError("Failed to query course library.")
+
+    for course in data_list:
+        course_detail = query_course_detail(s, course)
+        if type(course_detail) == CourseDetail:
+            try:
+                course.sksj = course_detail.sksj
+                course.jxdd = course_detail.jxdd
+            except:
+                logging.warn(
+                    "Failed to obtain ['sksj', 'jxdd'] detail of <ElectCourse>: %s. Use carefully." % course['kcmc'])
+        else:
+            logging.warn(
+                "Failed to obtain ['sksj', 'jxdd'] detail of <ElectCourse>: %s. Use carefully." % course['kcmc'])
+
+    return data_list
 
 
 def query_course_detail(s, elect_course_type):
@@ -169,14 +184,11 @@ def query_course_detail(s, elect_course_type):
     resp = s.post(detail_url + s.student_id, params)
     if resp.status_code == 200:
         resource = json.loads(resp.content.decode())
-        data_list = []
         # 如果有数据
         try:
-            for item in resource:
-                data_list.append(CourseDetail(**item))
-        except ParseError:
+            return CourseDetail(**resource[0])
+        except:
             # 抛异常结束
-            raise ParseError("Failed to parse course data.")
-        else:
-            return data_list
+            raise ParseError("Failed to parse course detail.")
+
     raise RequestError("Failed to query course library.")

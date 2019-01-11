@@ -20,17 +20,31 @@ class ElectCourse:
             for critical in self.__critical_keys:
                 if critical in self.__missed_keys:
                     # 如果丢失必须 key，就抛异常
+                    if 'kcmc' in self.__dict__:
+                        raise ParseError(
+                            "Missed critical key %s in <ElectCourse>: %s." % (
+                                critical, self.__dict__['kcmc']))
                     raise ParseError(
-                        "Missed critical key %s in course query." % critical)
+                        "Missed critical key %s in <ElectCourse>: Anonymous." % critical)
 
             # 否则只是打警告
             logging.warn(
-                "Missing key %s in personal course query." % self.__missed_keys)
+                "Missing key %s in <ElectCourse>: %s. Use carefully." % (
+                    self.__missed_keys, self.__dict__['kcmc']))
 
     __personal_keys = ['jxb_id', 'jxbmc', 'kch', 'kch_id',
                        'kcmc', 'xf']
 
     __missed_keys = []
+
+    def __str__(self):
+        return "<ElectCourse>: %s - %s, %s 学分" % (self.kch_id, self.kcmc, self.xf)
+
+    def __repr__(self):
+        return str(self)
+
+    sksj = ""
+    jxdd = ""
 
     __critical_keys = ['jxb_id', 'kch_id', 'kcmc', 'xf']
 
@@ -62,7 +76,7 @@ class PersonalCourse:
 
             # 否则只是打警告
             logging.warn(
-                "Missing optional key[s] %s in PersonalCourse: %s. Use carefully." % (self.__missed_keys, self.__dict__['kcmc']))
+                "Missing optional key[s] %s in <PersonalCourse> %s. Use carefully." % (self.__missed_keys, self.__dict__['kcmc']))
 
     __personal_keys = ['cdmc', 'cd_id', 'jc', 'jcor',
                        'jcs', 'jgh_id', 'jgpxzd', 'jxb_id', 'jxbmc', 'kch_id', 'kcmc', 'khfsmc', 'xm',
@@ -71,6 +85,12 @@ class PersonalCourse:
     __missed_keys = []
 
     __critical_keys = ['cdmc', 'kcmc', 'xqj', 'jc', 'zcd', 'kch_id', 'xm']
+
+    def __str__(self):
+        return "<PersonalCourse>: %s - %s, %s" % (self.kch_id, self.kcmc, self.xm)
+
+    def __repr__(self):
+        return str(self)
 
     def __check_valid(self):
         self.__missed_keys = []
@@ -110,6 +130,12 @@ class PersonalExam:
 
     __critical_keys = ['ksmc', 'kssj']
 
+    def __str__(self):
+        return "<PersonalExam>: %s @ %s" % (self.ksmc, self.kssj)
+
+    def __repr__(self):
+        return str(self)
+
     def __check_valid(self):
         self.__missed_keys = []
         flag = True
@@ -147,6 +173,12 @@ class PersonalScore:
 
     __critical_keys = ['kcmc', 'bfzcj']
 
+    def __str__(self):
+        return "<PersonalScore>: %s, %s‘" % (self.kcmc, self.bfzcj)
+
+    def __repr__(self):
+        return str(self)
+
     def __check_valid(self):
         self.__missed_keys = []
         flag = True
@@ -179,9 +211,9 @@ class CourseDetail:
 
     __personal_keys = ['jxb_id', 'jxbrl', 'jxdd', 'sksj', 'jsxx']
 
-    __missed_keys = ['jxb_id', 'jxbrl', 'jxdd']
+    __missed_keys = []
 
-    __critical_keys = ['kcmc', 'bfzcj']
+    __critical_keys = ['kcmc', 'bfzcj', 'sksj', 'jxdd']
 
     def __check_valid(self):
         self.__missed_keys = []

@@ -14,11 +14,8 @@ import manip
 import modules
 import shared
 
+log = login.Login()
 
-try:
-    log = login.Login()
-except shared.RequestError:
-    exit(1)
 
 username = input("jAccount ID: >>> ")
 password = input("jAccount Password: >>> ")
@@ -39,13 +36,17 @@ if s == None:
 # 等会儿，喘口气
 # input()
 
-# school_pack = shared.holder_school_packer('03000')
+selected_course = manip.check_selected_course(s)
+
+print(selected_course)
+
+input()
+
+school_pack = shared.holder_school_packer('03000')
 
 ele_cs = manip.query_course(s, '', school='03000', request_left=True)
 
-if len(ele_cs) != 0:
-    print(manip.query_course_detail(s, ele_cs[0]))
-    manip.select_course(s, ele_cs[0])
+print(ele_cs)
 input()
 
 # 选完就退 刺激
