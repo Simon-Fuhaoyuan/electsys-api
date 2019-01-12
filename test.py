@@ -63,6 +63,7 @@ try:
     print(ele_cs[0])
     manip.deselect_course(s, ele_cs[0])
     input()
+
 except shared.RequestError:
     print("大概现在不是选课的时候...")
 except shared.ParseError:

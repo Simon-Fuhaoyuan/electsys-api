@@ -60,7 +60,12 @@ class Session:
         return self.url.split('_t=')[1]
 
     def update_origin(self):
-        self.__session.headers['Origin'] = 'http://i.sjtu.edu.cn'
+        # [deprecated]
+        pass
+        # self.__session.headers['Origin'] = 'http://i.sjtu.edu.cn'
+
+    def log_headers(self):
+        print(self.__session.headers)
 
     def last_status(self):
         if self.__last_response_code != 0:
