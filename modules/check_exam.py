@@ -16,7 +16,7 @@ from shared.exception import ParseError, RequestError
 exam_check_url = 'http://i.sjtu.edu.cn/kwgl/kscx_cxXsksxxIndex.html?doType=query&gnmkdm=N358105&su='
 
 
-def get_exam_dict(s, year, term, course_name="", exam_location="", course_date="", max_limit=15):
+def get_exam_list(s, year, term, course_name="", exam_location="", course_date="", max_limit=15):
     if term == 1:
         term_code = '3'
     elif term == 2:

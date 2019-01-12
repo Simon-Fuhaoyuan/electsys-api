@@ -69,27 +69,27 @@ except shared.RequestError:
 except shared.ParseError:
     print("解析请求数据出了毛病...")
 
-print("本学期的第一天：(月, 日)")
+print("本学期的第一天：")
 print(modules.get_start_date(s))
 
 
 print("2018 年秋季学期的课表：")
-print(modules.get_course_dict(s, 2018, 1))
+print(modules.get_course_list(s, 2018, 1))
 
 input()
 
 
 print("2017 年春季学期的课表：")
-print(modules.get_course_dict(s, 2017, 2))
+print(modules.get_course_list(s, 2017, 2))
 
 input()
 
 print("2017 年春季学期的考试成绩：")
-print(modules.get_score_dict(s, 2017, 2))
+print(modules.get_score_list(s, 2017, 2))
 input()
 
 print("2017 年春季学期的考试安排：")
-print(modules.get_exam_dict(s, 2017, 2))
+print(modules.get_exam_list(s, 2017, 2))
 input()
 
 # 尝试登出

@@ -16,7 +16,7 @@ from shared.exception import ParseError, RequestError
 score_check_url = 'http://i.sjtu.edu.cn/cjcx/cjcx_cxDgXscj.html?doType=query&gnmkdm=N305005'
 
 
-def get_score_dict(s, year, term, max_limit=30):
+def get_score_list(s, year, term, max_limit=30):
     if term == 1:
         term_code = '3'
     elif term == 2:

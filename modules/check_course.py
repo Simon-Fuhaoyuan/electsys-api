@@ -17,7 +17,7 @@ from shared.exception import ParseError, RequestError
 course_table_url = 'http://i.sjtu.edu.cn/kbcx/xskbcx_cxXsKb.html?gnmkdm=N2151'
 
 
-def get_course_dict(s, year, term):
+def get_course_list(s, year, term):
     if s.is_ok():
         if term == 1:
             xqm = '3'
