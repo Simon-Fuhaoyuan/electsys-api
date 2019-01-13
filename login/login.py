@@ -26,6 +26,8 @@ class Login:
 
     __req = None
 
+    __login_session = None
+
     __sid = ""
     __client = ""
     __returl = ""
@@ -44,9 +46,6 @@ class Login:
         except:
             raise RequestError(
                 "Failed to post login request to %s." % login_url)
-
-    def __del__(self):
-        self.logout()
 
     def attempt(self, username, password, captcha):
 
@@ -77,7 +76,8 @@ class Login:
             raise ParseError("Failed to parse element sessionUserKey.")
 
         # fin_resp = self.__req.get(resp.url)
-        return Session(resp.url, str(student_id), self.__req)
+        self.__login_session = Session(resp.url, str(student_id), self.__req)
+        return self.__login_session
 
     def logout(self):
         try:
@@ -97,6 +97,11 @@ class Login:
                 draw_captcha(img)
             else:
                 img.show()
+
+    def get_session(self):
+        if self.__login_session.is_ok():
+            return self.__login_session
+        return None
 
 
 def get_proper_image_width():
