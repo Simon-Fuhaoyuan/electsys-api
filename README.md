@@ -35,12 +35,16 @@
 | 结构 | [![](https://img.shields.io/badge/结构-课程表-FF724C.svg)](https://github.com/yuxiqian/electsys-api/wiki/PersonalCourse-结构) [![](https://img.shields.io/badge/结构-考试安排-FF3600.svg)](https://github.com/yuxiqian/electsys-api/wiki/PersonalExam-结构) [![](https://img.shields.io/badge/结构-待选课程-CC2B00.svg)](https://github.com/yuxiqian/electsys-api/wiki/ElectCourse-结构)  [![](https://img.shields.io/badge/结构-考试成绩-7F3926.svg)](https://github.com/yuxiqian/electsys-api/wiki/PersonalScore-结构) |
 # 致谢
 
-* [lxml](https://github.com/lxml/lxml), under the BSD license
+* [SJTU NIC](https://net.sjtu.edu.cn)
+
+* [lxml](https://github.com/lxml/lxml), under the BSD License
 
 * [requests](https://github.com/requests/requests), under the Apache License
 
-* [PIL](https://github.com/python-pillow/Pillow), under the open source PIL Software License
-
 * [Shields](https://github.com/badges/shields/), under the CC0 1.0 Universal License
 
-* [SJTU NIC](https://net.sjtu.edu.cn)
+* [Pillow](https://github.com/python-pillow/Pillow), under the open source PIL Software License
+
+# 协议
+
+[MIT License](https://github.com/yuxiqian/electsys-api/blob/master/LICENSE)
