@@ -11,14 +11,15 @@
 
 import login
 import manip
-import modules
 import shared
+import modules
+import getpass
 
 log = login.Login()
 
 
 username = input("jAccount ID: >>> ")
-password = input("jAccount Password: >>> ")
+password = getpass.getpass("jAccount Password: >>> ")
 
 log.get_captcha(display=True, on_screen=True)
 captcha = input("Input Captcha: >>> ")
