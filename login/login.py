@@ -99,7 +99,7 @@ class Login:
                 img.show()
 
     def get_session(self):
-        if self.__login_session.is_ok():
+        if self.__login_session != None and self.__login_session.is_ok():
             return self.__login_session
         return None
 
