@@ -14,6 +14,14 @@
 
 > jAccount 登录接口
 
+
+# 安装
+
+``` shell
+pip[3] install electsysApi
+```
+
+
 # 功能
  - [x] `jAccount` 登录
  - [x] 查询校历
