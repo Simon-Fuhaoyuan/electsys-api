@@ -5,14 +5,14 @@
 @license: MIT
 @contact: akaza_akari@sjtu.edu.cn
 @software: electsys-api
-@file: /samples.py
+@file: samples.py
 @time: 2019/1/4
 '''
 
-import login
-import manip
-import shared
-import modules
+import electsysApi.login as login
+import electsysApi.manip as manip
+import electsysApi.shared as shared
+import electsysApi.modules as modules
 import getpass
 
 log = login.Login()
