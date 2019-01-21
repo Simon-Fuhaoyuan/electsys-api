@@ -18,7 +18,7 @@ import requests
 
 from PIL import Image
 from lxml import etree
-from electsysApi.login.misc.const import headers, login_url, logout_url, captcha_url, post_url, captcha_cache
+from .const import headers, login_url, logout_url, captcha_url, post_url, captcha_cache
 from electsysApi.shared import Session, RequestError
 
 
