@@ -3,8 +3,10 @@
 
 
 ![](https://img.shields.io/badge/python-3.x-blue.svg)
+[![](https://img.shields.io/pypi/v/electsysApi.svg)](https://pypi.org/project/electsysApi/)
 ![](https://travis-ci.org/yuxiqian/electsys-api.svg?branch=master)
 [![](https://img.shields.io/github/last-commit/google/skia.svg)](https://github.com/yuxiqian/electsys-api/)
+
 
 <div align=center>
     <img src="https://raw.githubusercontent.com/yuxiqian/electsys-api/master/screenshots/login_captcha.png"/>
