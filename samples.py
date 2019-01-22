@@ -70,6 +70,15 @@ except shared.RequestError:
 except shared.ParseError:
     print("解析请求数据出了毛病...")
 
+
+print("尝试条件查询：2018, 1, 计算机")
+print(modules.conditional_query(s, 2018, 1, name="计算机"))
+input()
+
+print("尝试条件查询：2018, 1, 计算机, 臧斌宇")
+print(modules.conditional_query(s, 2018, 1, name="计算机", teacher="臧斌宇"))
+input()
+
 print("本学期的第一天：")
 print(modules.get_start_date(s))
 

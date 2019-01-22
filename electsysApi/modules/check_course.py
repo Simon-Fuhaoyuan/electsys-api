@@ -25,6 +25,9 @@ def get_course_list(s, year, term):
             xqm = '12'
         elif term == 3:
             xqm = '16'
+        else:
+            raise TypeError("Invalid term code.")
+
         params = {
             'xnm': str(year),
             'xqm': xqm

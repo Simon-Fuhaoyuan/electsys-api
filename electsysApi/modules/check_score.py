@@ -24,7 +24,8 @@ def get_score_list(s, year, term, max_limit=30):
     elif term == 3:
         term_code = '16'
     else:
-        return None
+        raise TypeError("Invalid term code.")
+
     params = {
         'xnm': str(year),
         'xqm': term_code,

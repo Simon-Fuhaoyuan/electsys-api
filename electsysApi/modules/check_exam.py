@@ -24,7 +24,8 @@ def get_exam_list(s, year, term, course_name="", exam_location="", course_date="
     elif term == 3:
         term_code = '16'
     else:
-        return None
+        raise TypeError("Invalid term code.")
+
     params = {
         'xnm': str(year),
         'xqm': term_code,
