@@ -13,11 +13,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='electsysApi',
-    version='0.0.5',
+    version='0.0.6',
     description=(
         'Next generation of SJTU elect system API.'
     ),
     long_description=open('README.rst').read(),
+    python_requires='>=3',
     author='yuxiqian',
     author_email='akaza_akari@sjtu.edu.cn',
     maintainer='yuxiqian',
@@ -39,8 +40,8 @@ setup(
         'Topic :: Software Development :: Libraries'
     ],
     install_requires=[
-        'requests==2.20.0',
-        'lxml==4.2.5',
-        'Pillow==5.4.0'
+        'requests~=2.20',
+        'lxml~=4.2',
+        'Pillow~=5.4'
     ]
 )
