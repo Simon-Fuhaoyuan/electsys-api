@@ -5,40 +5,30 @@ electsys-api
 
 |image0| |image1| |image2|
 
-.. raw:: html
-
-   <div align="center">
-
-::
-
-    <img src="https://raw.githubusercontent.com/yuxiqian/electsys-api/master/screenshots/login_captcha.png"/>
-
-.. raw:: html
-
-   </div>
-
-    jAccount 登录接口
 
 功能
 ====
 
--  [x] ``jAccount`` 登录
--  [x] 查询校历
--  [x] 查询课程表
--  [x] 查询考试安排
--  [x] 查询考试成绩
+- ``jAccount`` 登录
+- 查询校历
+- 查询课程表
+- 查询考试安排
+- 查询考试成绩
 
-    以下操作仅开放选课时段可用 - [x] 模糊／精确搜索课程库 - [x]
-    查询已选课程 - [x] 选课 - [x] 退课
+`以下操作仅开放选课时段可用`
+
+- 模糊／精确搜索课程库
+- 查询已选课程
+- 选课
+- 退课
 
 文档
 ====
 
 -  `Wiki Home <https://github.com/yuxiqian/electsys-api/wiki>`__
 
-\| 类目 \| 链接 \| \| ------ \| ------ \| \| 模块 \| |image3| |image4|
-|image5|\ \| \| 操作 \| |image6| |image7| |image8| |image9|\ \| \| 结构
-\| |image10| |image11| |image12| |image13| \| # 致谢
+致谢
+====
 
 -  `SJTU NIC <https://net.sjtu.edu.cn>`__
 
@@ -56,8 +46,7 @@ electsys-api
 协议
 ====
 
-`MIT
-License <https://github.com/yuxiqian/electsys-api/blob/master/LICENSE>`__
+`MIT <https://github.com/yuxiqian/electsys-api/blob/master/LICENSE>`__
 
 .. |image0| image:: https://img.shields.io/badge/python-3.x-blue.svg
 .. |image1| image:: https://travis-ci.org/yuxiqian/electsys-api.svg?branch=master
