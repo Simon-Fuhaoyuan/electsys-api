@@ -48,7 +48,7 @@ electsys-api
 
 `MIT <https://github.com/yuxiqian/electsys-api/blob/master/LICENSE>`__
 
-.. |image0| image:: https://img.shields.io/badge/python-3.x-blue.svg
+.. |image0| image:: https://img.shields.io/badge/python-3.4%2B-blue.svg
 .. |image1| image:: https://travis-ci.org/yuxiqian/electsys-api.svg?branch=master
 .. |image2| image:: https://img.shields.io/github/last-commit/google/skia.svg
    :target: https://github.com/yuxiqian/electsys-api/
