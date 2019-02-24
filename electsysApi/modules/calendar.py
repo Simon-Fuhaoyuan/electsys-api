@@ -30,14 +30,23 @@ def get_start_date(s):
 
     cal_htm = etree.HTML(cont)
 
-    for mon in cal_htm.xpath('//*[@id="sch-xq"]/table/thead/tr[2]/th[2]'):
-        month = int(mon.text.replace('月', ''))
+    actual_id = 2
 
-    for day in cal_htm.xpath('//*[@id="sch-xq"]/table/tbody/tr[1]/td[2]'):
-        day = int(day.text)
+    while True:
+        try:
+            for mon in cal_htm.xpath('//*[@id="sch-xq"]/table/thead/tr[2]/th[2]'):
+                month = int(mon.text.replace('月', ''))
 
-    for title in cal_htm.xpath('//*[@id="sch-xq"]/table/thead/tr[1]/th'):
-        year_term = title.text.replace('上海交通大学', '').replace('校历', '')
+            for day in cal_htm.xpath('//*[@id="sch-xq"]/table/tbody/tr[1]/td[%d]' % actual_id):
+                day = int(day.text)
+
+            for title in cal_htm.xpath('//*[@id="sch-xq"]/table/thead/tr[1]/th'):
+                year_term = title.text.replace('上海交通大学', '').replace('校历', '')
+
+        except:
+            actual_id += 1
+            continue
+        break
 
     if '秋冬' in year_term:
         year = int(year_term.split('-')[0])
@@ -56,11 +65,19 @@ def get_start_day(s):
     cal_htm = etree.HTML(cont)
     # input(cont)
 
-    for mon in cal_htm.xpath('//*[@id="sch-xq"]/table/thead/tr[2]/th[2]'):
-        month = int(mon.text.replace('月', ''))
+    actual_id = 2
 
-    for day in cal_htm.xpath('//*[@id="sch-xq"]/table/tbody/tr[1]/td[2]'):
-        day = int(day.text)
+    while True:
+        try:
+            for mon in cal_htm.xpath('//*[@id="sch-xq"]/table/thead/tr[2]/th[2]'):
+                month = int(mon.text.replace('月', ''))
+
+            for day in cal_htm.xpath('//*[@id="sch-xq"]/table/tbody/tr[1]/td[%d]' % actual_id):
+                day = int(day.text)
+        except:
+            actual_id += 1
+            continue
+        break
 
     if month != None and day != None:
         return month, day
