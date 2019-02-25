@@ -9,10 +9,13 @@
 @time: 2019/1/4
 '''
 
+from electsysApi.shared.exception import ParseError
 from lxml import etree
 import requests
 
 calendar_url = 'http://i.sjtu.edu.cn/xtgl/index_cxshjdAreaFive.html?localeKey=zh_CN&gnmkdm=index&su='
+
+__cycle_limit = 5
 
 
 def get_calendar_table(s):
@@ -44,6 +47,9 @@ def get_start_date(s):
                 year_term = title.text.replace('上海交通大学', '').replace('校历', '')
 
         except:
+            if actual_id > __cycle_limit:
+                raise ParseError(
+                    "Failed to parse calendar in %d cycles." % __cycle_limit)
             actual_id += 1
             continue
         break
@@ -75,6 +81,9 @@ def get_start_day(s):
             for day in cal_htm.xpath('//*[@id="sch-xq"]/table/tbody/tr[1]/td[%d]' % actual_id):
                 day = int(day.text)
         except:
+            if actual_id > __cycle_limit:
+                raise ParseError(
+                    "Failed to parse calendar in %d cycles." % __cycle_limit)
             actual_id += 1
             continue
         break
