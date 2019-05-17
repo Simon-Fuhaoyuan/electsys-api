@@ -1,8 +1,7 @@
 # electsys-api
-上海交通大学新版教学信息服务网 API。
+上海交通大学新版教学信息服务网 Api。
 
-
-![](https://img.shields.io/badge/python-3.4%2B-blue.svg)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/electsysApi.svg)
 [![](https://img.shields.io/pypi/v/electsysApi.svg)](https://pypi.org/project/electsysApi/)
 ![](https://travis-ci.org/yuetsin/electsys-api.svg?branch=master)
 [![](https://img.shields.io/github/last-commit/google/skia.svg)](https://github.com/yuxiqian/electsys-api/)
